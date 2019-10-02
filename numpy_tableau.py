@@ -151,3 +151,58 @@ min      1.000000
 75%      5.500000
 max      7.000000
 dtype: float64
+
+# Union
+>>> ser1 = pd.Series(['A', 'B', 'C'], index = [1,2,3])
+>>> ser2 = pd.Series(['D', 'E', 'F'], index = [4,5,6])
+>>> pd.concat([ser1, ser2])
+1    A
+2    B
+3    C
+4    D
+5    E
+6    F
+dtype: object
+
+
+df = flights.set_index(['year', 'month'])
+df.index.names
+
+df.index[20000]
+
+df.sort_index(level = ['year', 'month'], ascending = True, inplace = True)
+
+idx = pd.IndexSlice
+
+df.loc[idx[:2013, 6:7], :]
+
+
+# Affichage graphique
+
+
+
+# Natural Language Toolkit (NLTK)
+>>> import nltk
+
+# Télécharger les packages stopwords et punkt (word_tokenize)
+>>> nltk.download()
+
+>>> from nltk.corpus import stopwords
+>>> from nltk.tokenize import word_tokenize
+
+>>> stop_words = set(stopwords.words("french"))
+>>> stop_words
+{'m', 'ai', 'aurait', 'auriez', 'eusse', 'ayante', 'fusses', 'aie', 'aurais', 'qui', 'ces', 'seraient', 'ait', 'tes', 'eusses', 'ta', 'avait', 'ayantes', 'pas', 'fussent', 'j', 'mes', 'ses', 'eussent', 'eue', 'soyez', 'eux', 'seras', 'eus', 'le', 'par', 'eussiez', 'tu', 'à', 'seront', 'aurons', 'je', 'été', 'ils', 'eues', 'avions', 'étants', 'se', 'serez', 'ayons', 'serais', 'êtes', 'fut', 'et', 'y', 'étaient', 'avons', 'aux', 'c', 'serions', 'avaient', 'de', 'fûtes', 'un', 'me', 'ton', 'étiez', 'sommes', 'soyons', 'moi', 'l', 'avais', 'nous', 'que', 'est', 'en', 'seriez', 'sur', 'eut', 'ayants', 'as', 'aurions', 'eûtes', 'on', 'aurai', 'la', 'même', 'étais', 'aies', 'il', 'vous', 'étée', 'eûmes', 'qu', 'avez', 'sois', 'sont', 'son', 'suis', 'fus', 'es', 'sera', 'avec', 'furent', 'n', 'étions', 'fûmes', 'aurez', 'aient', 'aura', 'auraient', 'ne', 'eussions', 'étante', 'serai', 'était', 'leur', 'étées', 'du', 'fusse', 'étant', 'notre', 'vos', 'auras', 'mais', 'auront', 't', 'ma', 'soient', 'nos', 'ce', 'serons', 'fussiez', 'aviez', 'une', 'd', 'ont', 'soit', 'eu', 'les', 'votre', 'dans', 'serait', 'ayez', 'fussions', 'ou', 'ayant', 'sa', 'lui', 'fût', 'mon', 'te', 'pour', 'eurent', 'eût', 'des', 'étantes', 's', 'toi', 'au', 'elle', 'étés'}
+
+>>> words = word_tokenize(text)
+>>> words
+["c'est", 'une', 'étrange', 'entreprise', 'que', 'celle', 'de', 'faire', 'rire', 'les', 'honnêtes', 'gens', '.']
+
+>>> text = "c'est une étrange entreprise que celle de faire rire les honnêtes gens."
+>>> new_sentence = []
+>>> for word in words:
+...     if word not in stop_words:
+...         new_sentence.append(word)
+...
+>>> print(new_sentence)
+["c'est", 'étrange', 'entreprise', 'celle', 'faire', 'rire', 'honnêtes', 'gens', '.']
